@@ -1,0 +1,2 @@
+Number of tickets sold = 88250 
+Sale amount = $6493750.00 

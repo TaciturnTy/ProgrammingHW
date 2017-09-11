@@ -1,0 +1,29 @@
+	Ubuntu Live Download process.
+
+1.  go to http://www.ubuntu.com/download/desktop
+
+2.  At the Ubuntu 12.04 LTS use drop down menu to choose 32 bit machine.
+
+3. On next page go near to bottom to select download without paying.
+
+4.  You should get a popup about open or saving and .iso file
+
+5.  Click the drop down on the save button and choose save as.
+
+6. Browse to a place you want to the file.  Be sure you can find that location.
+
+7. Select OK to download.
+
+8.  Place DVD in your Optical drive.
+
+9.  right click on the file you downloaded and select burn. Be sure it is going to burn on
+the DVD.
+
+10.  When burn is complete and disk ejected place the disk back in and reboot.
+
+11.  Press enter to interrupt bootup and select the DVD drive for boot.
+
+12.  when ubuntu screen show, press the try ubuntu button, NOT the install.
+
+13.  When it complete you should be able to run ubuntu without afffecting the machine itself.
+

@@ -1,0 +1,69 @@
+Microsoft (R) Macro Assembler (x64) Version 14.11.25508.2   09/14/17 04:50:58
+AddVariables_64.asm					     Page 1 - 1
+
+
+				COMMENT @
+
+				Tyler Paulley
+				9/14/2017
+				Chapter 3, Exercise 6
+				AddVariables_64.asm
+
+				A 64-bit adaptation of the AddVariables.asm program
+
+				@
+														;navigated to Project > Project Properties > Platform and changed platform from Win32 to x64
+				;.386									;removed .386
+				;.model flat,stdcall					;removed '.model flat,stdcall'
+				;.stack 4096							;removed '.stack 4096'
+				ExitProcess proto						;used 'ExitProcess proto' instead of 'ExitProcess proto,dwExitCode:dword'
+
+ 00000000			.data
+ 00000000			firstval  qword 20002000h				;changed variables to quad words
+	   0000000020002000
+ 00000008			secondval qword 11111111h
+	   0000000011111111
+ 00000010			thirdval  qword 22222222h
+	   0000000022222222
+ 00000018			sum qword 0
+	   0000000000000000
+
+ 00000000			.code
+ 00000000			main proc
+ 00000000  48/ 8B 05			mov	rax, firstval					;used 64-bit rax register instead of 32-bit eax register
+	   00000000 R
+ 00000007  48/ 03 05			add	rax, secondval		
+	   00000008 R
+ 0000000E  48/ 03 05			add rax, thirdval
+	   00000010 R
+ 00000015  48/ 89 05			mov sum, rax
+	   00000018 R
+
+ 0000001C  E8 00000000 E		call ExitProcess					;used 'call ExitProcess' instead of 'call ExitProcess, 0'
+ 00000021			main endp
+				end										;used 'end' instead of 'end main'
+Microsoft (R) Macro Assembler (x64) Version 14.11.25508.2   09/14/17 04:50:58
+AddVariables_64.asm					     Symbols 2 - 1
+
+
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+ExitProcess  . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+main . . . . . . . . . . . . . .	P 	 00000000 _TEXT	Length= 00000021 Public
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+firstval . . . . . . . . . . . .	QWord	 00000000 _DATA	
+secondval  . . . . . . . . . . .	QWord	 00000008 _DATA	
+sum  . . . . . . . . . . . . . .	QWord	 00000018 _DATA	
+thirdval . . . . . . . . . . . .	QWord	 00000010 _DATA	
+
+	   0 Warnings
+	   0 Errors

@@ -1,0 +1,79 @@
+Microsoft (R) Macro Assembler Version 14.11.25508.2	    09/14/17 02:40:58
+IntExpression.asm					     Page 1 - 1
+
+
+				COMMENT @
+
+				Tyler Paulley
+				9/14/2017
+				Chapter 3, Exercise 1
+				IntExpression.asm
+
+				Calculates the expression A = (A + B) - (C + D)
+
+				For this example: A = 4, B = 3, C = 2, D = 1
+				Therefore, A = (4 + 3) - (2 + 1) should end with A = 4
+
+				@
+
+				.386
+				.model flat,stdcall
+				.stack 4096
+				ExitProcess proto,dwExitCode:dword
+
+ 00000000			.code
+ 00000000			main proc
+ 00000000  B8 00000004			mov	eax, 4	
+ 00000005  BB 00000003			mov ebx, 3
+ 0000000A  B9 00000002			mov ecx, 2
+ 0000000F  BA 00000001			mov edx, 1
+
+ 00000014  03 C3			add	eax, ebx
+ 00000016  03 CA			add ecx, edx
+ 00000018  2B C1			sub eax, ecx
+
+					invoke ExitProcess,0
+ 0000001A  6A 00	   *	    push   +000000000h
+ 0000001C  E8 00000000 E   *	    call   ExitProcess
+ 00000021			main endp
+				end main
+Microsoft (R) Macro Assembler Version 14.11.25508.2	    09/14/17 02:40:58
+IntExpression.asm					     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+STACK  . . . . . . . . . . . . .	32 Bit	 00001000 DWord	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000021 DWord	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+ExitProcess  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000021 Public STDCALL
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000003h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+
+	   0 Warnings
+	   0 Errors

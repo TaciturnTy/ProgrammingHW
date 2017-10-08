@@ -1,0 +1,52 @@
+/* Tyler Paulley */
+/* 9/25/2016     */
+/* Homework 3    */
+/* C.S. 360      */
+
+//#include "stdafx.h"
+#include <iostream>
+using namespace std;
+
+//Computing a polynomial
+float nPower(float a, int n)
+{
+	float polynomial = 0;
+	float product = a;
+	for (int i = 0; i < n; i++)
+	{
+		if(i > 0)
+			product *= a;
+		else
+			product = a;
+		polynomial += product;
+		if(i < n - 1)
+		{
+			cout << product << " + ";
+		}
+		else if(i == n - 1)
+		{
+			cout << product;
+		}
+	}
+	return polynomial;
+}
+
+
+int main()
+{
+	float base;
+	int power;
+	float result;
+
+	cout << "\nPlease input the base: ";
+	cin >> base;
+	cout << "\nPlease input the power: ";
+	cin >> power;
+	result = nPower(base, power);
+	cout << "\nThe result is: " << result << "\n\n";
+
+
+	return 0;
+}
+
+

@@ -1,0 +1,100 @@
+Microsoft (R) Macro Assembler Version 14.11.25508.2	    09/20/17 00:24:35
+ReverseString.asm					     Page 1 - 1
+
+
+				COMMENT @
+
+				Tyler Paulley
+				9/19/2017
+				Chapter 4, Exercise 7
+				ReverseString.asm
+
+				@
+
+				.386
+				.model flat,stdcall
+				.stack 4096
+				ExitProcess proto,dwExitCode:DWORD
+
+ 00000000			.data
+ 00000000 54 68 69 73 20	source BYTE "This is the source string", 0
+	   69 73 20 74 68
+	   65 20 73 6F 75
+	   72 63 65 20 73
+	   74 72 69 6E 67
+	   00
+ 0000001A  0000001A [		target BYTE SIZEOF source DUP('#')
+	    23
+	   ]
+
+ 00000034 01 05 02 13		intArray BYTE 01h, 05h, 02h, 13h
+
+ 00000000			.code
+ 00000000			main proc
+ 00000000  BE 00000019 R		mov esi, OFFSET source + SIZEOF source - TYPE source	;store location of last source element
+ 00000005  BF 0000001A R		mov edi, OFFSET target									;store first location of target
+ 0000000A  BB FFFFFFFF R		mov ebx, OFFSET source - TYPE source					;get location of first character in source - 1
+
+ 0000000F			CopyLoop:				
+ 0000000F  3B DE			cmp ebx, esi											;if address of ebx greater than or equal to esi then all characters have been copied
+ 00000011  7D 0C			jge DoneCopying											
+
+ 00000013  8A 06			mov al, [esi]											
+ 00000015  88 07			mov [edi], al
+
+ 00000017  83 EE 01			sub esi, TYPE source
+ 0000001A  83 C7 01			add edi, TYPE source
+ 0000001D  E2 F0			loop CopyLoop
+
+ 0000001F			DoneCopying:
+
+					invoke ExitProcess,0
+ 0000001F  6A 00	   *	    push   +000000000h
+ 00000021  E8 00000000 E   *	    call   ExitProcess
+ 00000026			main endp
+				end main
+Microsoft (R) Macro Assembler Version 14.11.25508.2	    09/20/17 00:24:35
+ReverseString.asm					     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+STACK  . . . . . . . . . . . . .	32 Bit	 00001000 DWord	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000038 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000026 DWord	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+ExitProcess  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000026 Public STDCALL
+  CopyLoop . . . . . . . . . . .	L Near	 0000000F _TEXT	
+  DoneCopying  . . . . . . . . .	L Near	 0000001F _TEXT	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000003h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+intArray . . . . . . . . . . . .	Byte	 00000034 _DATA	
+source . . . . . . . . . . . . .	Byte	 00000000 _DATA	
+target . . . . . . . . . . . . .	Byte	 0000001A _DATA	
+
+	   0 Warnings
+	   0 Errors

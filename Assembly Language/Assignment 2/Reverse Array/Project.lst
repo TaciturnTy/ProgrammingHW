@@ -1,0 +1,93 @@
+Microsoft (R) Macro Assembler Version 14.11.25508.2	    09/19/17 23:56:04
+ReverseArray.asm					     Page 1 - 1
+
+
+				COMMENT @
+
+				Tyler Paulley
+				9/19/2017
+				Chapter 4, Exercise 5
+				Fibonacci.asm
+
+				Note: Had a bug until al and ah were used over EAX and EBX
+
+				@
+
+				.386
+				.model flat,stdcall
+				.stack 4096
+				ExitProcess proto,dwExitCode:DWORD
+
+ 00000000			.data
+ 00000000 01 05 02 13		intArray BYTE 01h, 05h, 02h, 13h
+
+ 00000000			.code
+ 00000000			main proc
+ 00000000  BE 00000000 R		mov esi, OFFSET intArray						;store location of first array element
+ 00000005  BF 00000003			mov edi, SIZEOF intArray - TYPE intArray		;store size of array into edi, subtract size of 1	
+ 0000000A  03 FE			add edi, esi									;now edi has address of last element
+
+ 0000000C			SwapLoop:				
+ 0000000C  3B FE			cmp edi, esi			
+ 0000000E  7E 12			jle DoneSwapping								;if address of end is less than or equal to address of start then jump
+
+ 00000010  8A 06			mov al, [esi]
+ 00000012  8A 27			mov ah, [edi]
+ 00000014  86 C4			xchg al, ah										;if not, swap items at start and end
+ 00000016  88 06			mov [esi], al
+
+ 00000018  88 27			mov [edi], ah
+ 0000001A  83 C6 01			add esi, TYPE intArray
+ 0000001D  83 EF 01			sub edi, TYPE intArray
+ 00000020  E2 EA			loop SwapLoop
+
+ 00000022			DoneSwapping:
+
+					invoke ExitProcess,0
+ 00000022  6A 00	   *	    push   +000000000h
+ 00000024  E8 00000000 E   *	    call   ExitProcess
+ 00000029			main endp
+				end main
+Microsoft (R) Macro Assembler Version 14.11.25508.2	    09/19/17 23:56:04
+ReverseArray.asm					     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+STACK  . . . . . . . . . . . . .	32 Bit	 00001000 DWord	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000004 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000029 DWord	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+ExitProcess  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000029 Public STDCALL
+  SwapLoop . . . . . . . . . . .	L Near	 0000000C _TEXT	
+  DoneSwapping . . . . . . . . .	L Near	 00000022 _TEXT	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000003h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+intArray . . . . . . . . . . . .	Byte	 00000000 _DATA	
+
+	   0 Warnings
+	   0 Errors

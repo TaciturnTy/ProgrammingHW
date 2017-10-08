@@ -1,0 +1,79 @@
+Microsoft (R) Macro Assembler Version 14.11.25508.2	    09/25/17 19:02:23
+Fibonacci.asm						     Page 1 - 1
+
+
+				COMMENT @
+
+				Tyler Paulley
+				9/19/2017
+				Chapter 4, Exercise 5
+				Fibonacci.asm
+
+				@
+
+				.386
+				.model flat,stdcall
+				.stack 4096
+				ExitProcess proto,dwExitCode:dword
+
+ 00000000			.data
+
+ 00000000			.code
+ 00000000			main proc
+ 00000000  BB 00000000			mov	ebx, 0				;previous fib value
+ 00000005  B8 00000001			mov eax, 1				;next fib value
+ 0000000A  BA 00000000			mov edx, 0				;temp storage
+ 0000000F  B9 00000005			mov	ecx, 5				;number of fib elements to find -2 since we start with 0 and 1
+					
+ 00000014			FibLoop:	
+ 00000014  8B D0			mov edx, eax			;save eax to edx
+ 00000016  03 C3			add eax, ebx			;put eax + ebx into eax
+ 00000018  8B DA			mov ebx, edx			;mov old eax to ebx
+ 0000001A  E2 F8			loop FibLoop
+
+					invoke ExitProcess,0
+ 0000001C  6A 00	   *	    push   +000000000h
+ 0000001E  E8 00000000 E   *	    call   ExitProcess
+ 00000023			main endp
+				end main
+Microsoft (R) Macro Assembler Version 14.11.25508.2	    09/25/17 19:02:23
+Fibonacci.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+STACK  . . . . . . . . . . . . .	32 Bit	 00001000 DWord	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000000 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000023 DWord	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+ExitProcess  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000023 Public STDCALL
+  FibLoop  . . . . . . . . . . .	L Near	 00000014 _TEXT	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000003h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+
+	   0 Warnings
+	   0 Errors

@@ -1,0 +1,4 @@
+﻿  Assembling BooleanCalculator.asm...
+SmallWin.inc(11): warning A4011: multiple .MODEL directives found : .MODEL ignored
+  Project.vcxproj -> H:\Collection\Education -- Bellarmine\2017 Senior Fall\Assembly Language Programming\Assignment 4\Ex_5_6 Boolean Calculator\Debug\Project.exe
+  Project.vcxproj -> H:\Collection\Education -- Bellarmine\2017 Senior Fall\Assembly Language Programming\Assignment 4\Ex_5_6 Boolean Calculator\Debug\Project.pdb (Full PDB)

@@ -1,0 +1,8 @@
+﻿  Assembling ShowParams.asm...
+SmallWin.inc(11): warning A4011: multiple .MODEL directives found : .MODEL ignored
+ShowParams.asm(50): warning A6004: procedure argument or local not referenced : first
+ShowParams.asm(50): warning A6004: procedure argument or local not referenced : second
+ShowParams.asm(50): warning A6004: procedure argument or local not referenced : third
+ShowParams.asm(79): warning A6004: procedure argument or local not referenced : count
+  Project.vcxproj -> H:\Collection\Education -- Bellarmine\2017 Senior Fall\Assembly Language Programming\Assignment 6\Ex_10 Show Params\Debug\Project.exe
+  Project.vcxproj -> H:\Collection\Education -- Bellarmine\2017 Senior Fall\Assembly Language Programming\Assignment 6\Ex_10 Show Params\Debug\Project.pdb (Full PDB)
